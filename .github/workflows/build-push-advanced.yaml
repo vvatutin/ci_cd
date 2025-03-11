@@ -83,7 +83,7 @@ jobs:
         run: |
           # If the headCommitMsg $(git show -s --format=%s) is empty, or less than 5 characters, set a default description
           if [[ -z "$(git show -s --format=%s)" || $(git show -s --format=%s | wc -c) -lt 5 ]]; then
-            echo "description=Otus: Infrastructure platform." >> $GITHUB_OUTPUT
+            echo "description=Infrastructure platform." >> $GITHUB_OUTPUT
           else
             echo "description=headCommitMsg:$(git show -s --format=%s)" >> $GITHUB_OUTPUT
           fi
@@ -159,7 +159,7 @@ jobs:
 #          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 #          KUBE_CONTEXT: default
 #        with:
-#          args: -n otus apply -f k8s/
+#          args: -n cicd apply -f k8s/
 #
 #      - name: Adding a job summary using Markdown
 #        run: |
