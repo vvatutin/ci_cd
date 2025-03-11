@@ -142,29 +142,29 @@ jobs:
       image: ${{ steps.image_summary.outputs.BACKEND_IMAGE }}
 
 
-  deploy:
-    name: 'Deploy to Kubernetes'
-    runs-on: ubuntu-latest
-    needs: image
-    steps:
-      - name: 'Checkout GitHub Action'
-        uses: actions/checkout@v4
-
-      - name: Update docker image
-        run: |
-          sed -i "s|{{ image }}|${{ needs.image.outputs.image }}|g" k8s/deployment.yaml
-
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-          KUBE_CONTEXT: default
-        with:
-          args: -n otus apply -f k8s/
-
-      - name: Adding a job summary using Markdown
-        run: |
-          echo "## Job Summary" >> $GITHUB_STEP_SUMMARY
-          echo "Success!!" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Deployed to Kubernetes" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
+#  deploy:
+#    name: 'Deploy to Kubernetes'
+#    runs-on: ubuntu-latest
+#    needs: image
+#    steps:
+#      - name: 'Checkout GitHub Action'
+#        uses: actions/checkout@v4
+#
+#      - name: Update docker image
+#        run: |
+#          sed -i "s|{{ image }}|${{ needs.image.outputs.image }}|g" k8s/deployment.yaml
+#
+#      - uses: actions-hub/kubectl@master
+#        env:
+#          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+#          KUBE_CONTEXT: default
+#        with:
+#          args: -n otus apply -f k8s/
+#
+#      - name: Adding a job summary using Markdown
+#        run: |
+#          echo "## Job Summary" >> $GITHUB_STEP_SUMMARY
+#          echo "Success!!" >> $GITHUB_STEP_SUMMARY
+#          echo "" >> $GITHUB_STEP_SUMMARY
+#          echo "Deployed to Kubernetes" >> $GITHUB_STEP_SUMMARY
+#          echo "" >> $GITHUB_STEP_SUMMARY
