@@ -25,13 +25,13 @@ FROM development AS build
 RUN npm run build
 
 
-FROM development as dev-envs
-RUN \
-  apt-get update \
-  && apt-get install -y --no-install-recommends git \
-  && useradd -s /bin/bash -m vscode \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+#FROM development as dev-envs
+#RUN \
+#  apt-get update \
+#  && apt-get install -y --no-install-recommends git \
+#  && useradd -s /bin/bash -m vscode \
+#  && apt-get clean \
+#  && rm -rf /var/lib/apt/lists/*
 
 
 # 2. For Nginx setup
