@@ -105,7 +105,7 @@ jobs:
           flavor: |
             latest=auto
           labels: |
-            maintainer=https://github.com/kksudo/
+            maintainer=https://github.com/vvatutin/
             org.opencontainers.image.created={{commit_date 'YYYY-MM-DDTHH:mm:ss.SSS[Z]'}}
             org.opencontainers.image.description=${{ steps.image-description.outputs.description }}
             org.opencontainers.image.revision=${{ github.sha }}
